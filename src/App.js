@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import Map from './components/Map'
+import { useEffect } from 'react'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const handleStateSelectedEvent = (event) => {
+    if (event.target.id !== 'map') {
+      const stateSelectedEvent = new CustomEvent('state-selected', {
+        detail: event.target.querySelector('title').innerHTML
+      })
+
+      window.dispatchEvent(stateSelectedEvent)
+    }
+  }
+
+  useEffect(() => {
+    document.getElementById('map').addEventListener('click', handleStateSelectedEvent)
+
+    return () => {
+      document.getElementById('map').removeEventListener('click', handleStateSelectedEvent)
+    }
+  })
+
+  return <Map />
 }
 
-export default App;
+export default App

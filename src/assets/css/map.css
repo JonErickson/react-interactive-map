@@ -1,0 +1,23 @@
+svg .state {
+  @apply fill-red-600;
+}
+
+svg .state path:hover {
+  @apply fill-red-400 cursor-pointer;
+}
+
+svg .borders {
+  @apply stroke-white stroke-1;
+}
+
+svg .separator {
+  @apply stroke-gray-600 stroke-1;
+}
+
+svg .separator:hover {
+  @apply fill-none;
+}
+
+svg .dccircle {
+  @apply block fill-black;
+}
